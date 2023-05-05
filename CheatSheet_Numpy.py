@@ -1,4 +1,6 @@
 import numpy as np
+import sys as s
+import time as time
 
 #1D Arrays & 2D Arrays/1D arrays are also called "list" one of the 4 collection data types in Python
 """
@@ -76,3 +78,46 @@ print("Math functions")
 print(d4.min(), d4.max(), d4.sum(), d4.sum(axis=0), d4.sum(axis=1), np.sqrt(d4))
 d5 = np.array([[1, 2], [3, 4], [5, 6]])
 print(d4 + d5)
+#Comparison of numpy v/s python arrays
+"""
+numpy arrays are far optimized for array operations in terms of memory and time
+we will compare the time taken for 1000 sized two 1D arrays
+"""
+p1 = range(10000)
+p2 = range(10000)
+starttime = time.time()
+result =[(x+y) for x,y in zip(p1,p2)]
+print((time.time() - starttime)*1000)
+
+np1 = np.arange(10000)
+np2 = np.arange(10000)
+starttime = time.time()
+result = np1 + np2
+print((time.time() - starttime)*1000)
+#nditer operation on numpy arrays
+"""
+nditer has many cool features for iterating over arrays
+flatten--> numpy method which flattens the array
+order = C ==> row wise/order = F ==> column wise
+External loop also flattens ,easier to understand order = 'F'
+op_flags=['readwrite'] ==> modifies an array
+Using nditer we can iterate over 2 COMPATIBLE arrays simultaneously
+"""
+e1 = np.array([[1,2,3] ,[4,5,6],[7,8,9]])
+for cell in e1.flatten():
+    print(cell)
+for cell in np.nditer(e1, order='C'):
+    print(cell)
+for cell in np.nditer(e1, order='F'):
+    print(cell)
+print("Using External loop")
+for x in np.nditer(e1, order='F', flags=['external_loop']):
+    print(x)
+    print(type(x))
+for x in np.nditer(e1, op_flags=['readwrite']):
+    x[...] = x * x
+print(e1)
+e2 = np.arange(3).reshape(3,1)
+print(e2)
+for x,y in np.nditer([e1,e2]):
+    print(x+y)
