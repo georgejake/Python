@@ -8,7 +8,7 @@ height = 10
 area = 1 / 2 * (base * height)
 print(type(area))
 print("area of this triange is", area)
-# Dictionaries in Python ,Dictionary cannot have key value pairs
+# Dictionaries in Python ,Dictionary cannot have duplicate key value pairs
 """
 Deleting/Adding/Printing and Looping a dictionary/Checking key in
 Dictionary is also the JSON formatting in python
@@ -18,6 +18,7 @@ print(d["george"])
 print(d)
 del d["george"]
 d["george"] = "1234"
+# Checking whether a key named george is there in dictionary
 print("george" in d)
 for key in d:
     print(key)
@@ -48,8 +49,11 @@ print(sum(a=3))
 
 # Read input from console
 """
-Get remainder function, Equality is checked using ==, Convert string to integer
+Whatever you enter as input, the input function converts it into a string.
+if you enter an integer value still input() function converts it into a string. You need to explicitly convert it into an integer in your code using typecasting
 """
+#Get remainder function, Equality is checked using ==, Convert string to integer
+
 a = input("Enter a number")
 a = int(a)
 if a % 2 == 0:
@@ -113,6 +117,7 @@ elif dish in chinese:
 else:
     print("Sorry!!! I dont know")
 
+# List Constructor - below converts a tuple into list
 thislist = list(("apple", "banana", "cherry"))
 print(thislist)
 # Loops
